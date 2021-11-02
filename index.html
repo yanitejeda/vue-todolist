@@ -5,22 +5,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/vue" ></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/vue" ></script>
 
 
     <title>Vue todolist</title>
 </head>
 <body>
     <main>
-        <h1 class="text-center">Hello Vueoolean - Todolist</h1>
+        <div id="root">
+            <h1 class="text-center">Hello Vueoolean - Todolist</h1>
 
-        <div class="add-element d-flex">
-            <input type="text" class="form-control" placeholder="Vorrei...">
-            <button type="submit" class="btn btn-primary">Aggiungi</button>
+            <div class="add-element py-3 d-flex">
+
+                <!-- v-model permette un legame bidirezionale fra il valore di un campo di <input>  -->
+                <input type="text" class="form-control" placeholder="Vorrei..." v-model="newElementList" >
+
+                <!-- Si può usare @click / v-on per ascoltare gli eventi nel DOM ed seguirli in JavaScript quando vengono attivati. -->
+                <button v-on:click="onPress" type="submit" class="btn btn-primary">Aggiungi</button>
+            </div>
+            <!-- v-for in mi cicla tra gli elementi della mia lista-->
+            <div class="list-group-elemen" v-for="elenco in listTodo" >
+                <ul class="list-group">
+                    <li class="list-group-item">{{elenco}}</li>
+                  </ul>
+            </div>
+
         </div>
-
     </main>
+    <script src="script.js"></script>
     
 </body>
 </html>
