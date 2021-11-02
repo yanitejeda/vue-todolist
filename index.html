@@ -19,15 +19,23 @@
             <div class="add-element py-3 d-flex">
 
                 <!-- v-model permette un legame bidirezionale fra il valore di un campo di <input>  -->
-                <input type="text" class="form-control" placeholder="Vorrei..." v-model="newElementList" >
+                <input type="text" v-on:keyup.enter="onPress" class="form-control" placeholder="Vorrei..." v-model="newElementList" >
 
                 <!-- Si può usare @click / v-on per ascoltare gli eventi nel DOM ed seguirli in JavaScript quando vengono attivati. -->
                 <button v-on:click="onPress" type="submit" class="btn btn-primary">Aggiungi</button>
             </div>
             <!-- v-for in mi cicla tra gli elementi della mia lista-->
-            <div class="list-group-elemen" v-for="elenco in listTodo" >
+            <div class="list-group-elemen" v-for="elenco,i in listTodo" >
+
                 <ul class="list-group">
-                    <li class="list-group-item">{{elenco}}</li>
+
+                    <li d-flex class="list-group-item d-flex justify-content-between">{{i+1}} - {{elenco}} 
+
+                        
+                        <!-- ho bisogno dell'indice per eliminare l'elemento nell'indice che mi interessa altrimenti mi cancella il primo elemento nella lista
+                        anche se non l'ho selezionato -->
+                        <button v-on:click="onPressDeleted(i)"  type="button" class="btn-close" aria-label="Close"></button></li>
+                    
                   </ul>
             </div>
 
